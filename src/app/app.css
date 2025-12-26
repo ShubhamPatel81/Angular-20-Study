@@ -1,0 +1,12 @@
+div {
+  text-align: center;
+  justify-content: center;
+}
+
+h1 {
+  background-color: rgb(208, 208, 231);
+}
+p {
+  color: green;
+  font-size: 20px;
+}
