@@ -1,0 +1,64 @@
+<div (scroll)="onWindowScroll()" style="overflow: scroll; height: 600px">
+  <h1>Data-binding works!</h1>
+
+  <table style="width: 100%; background-color: aqua">
+    <h3>This is inter Polation of Data using double curly braces {{ "{{}}" }}</h3>
+    <tr style="background-color: azure">
+      <td style="width: 50%; vertical-align: top; padding: 10px; color: brown">
+        <span>{{ courseName }}</span
+        ><br />
+        <span>{{ isActive }}</span
+        ><br />
+        <span>{{ currentDate }}</span
+        ><br />
+        <span>{{ rollNumbers }}</span
+        ><br />
+        <span>{{ arrayData }}</span
+        ><br />
+        <span>{{ arrayData1 }}</span
+        ><br />
+        <span>{{ tupleData }}</span
+        ><br />
+        <span>{{ enumData }}</span
+        ><br />
+        <span>{{ objectData }}</span
+        ><br />
+      </td>
+    </tr>
+    <tr style="background-color: blueviolet">
+      <td>
+        <input type="text" value="{{ rollNumbers }}" />
+      </td>
+    </tr>
+    <tr style="background-color: darkkhaki">
+      <p class="space-right" style="color: brown; font-weight: 300">This is property binding -></p>
+      <td>
+        <input type="text" placeholder="propery binding" [value]="rollNumbers" />
+      </td>
+    </tr>
+    <tr style="background-color: darkolivegreen" (mouseenter)="onMouseEnter()">
+      <td>{{ rollNumbers }}</td>
+      <h4>Using ngModel everywhere data will be change (FormsModule)</h4>
+      <td>
+        <input type="text" [(ngModel)]="rollNumbers" />
+      </td>
+      <td>
+        <input type="checkbox" [(ngModel)]="isActive" />
+      </td>
+      <td>{{ isActive }}</td>
+    </tr>
+    <tr style="background-color: darkorange">
+      <td>
+        <button (click)="showAlert()">Show Alert</button>
+      </td>
+      <td>
+        <select (change)="onNumberChange($event)" name="" id="">
+          <option value="10">Ten</option>
+          <option value="20">Twenty</option>
+          <option value="30">Thirty</option>
+        </select>
+      </td>
+    </tr>
+  </table>
+  <h4>Sum is {{ addTwoNumbers(10, 20) }}</h4>
+</div>
