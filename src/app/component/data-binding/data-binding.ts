@@ -32,7 +32,8 @@ export class DataBinding  {
       this.rollNumbers = 999;
     },5000)
   }
-  showAlert() {
+  // ? -> optional parameter
+  showAlert(param ?:String) {
     alert("Button clicked!");
   }
   onNumberChange(event: any
@@ -40,14 +41,15 @@ export class DataBinding  {
     alert("Selected Number: " + event.target.value);
 
   }
-  onWindowScroll() {
+  onWindowScroll():void {
     console.log("Window scrolled!");
   }
-  onMouseEnter(){
+  onMouseEnter():void{
     console.log("Mouse entered the table area!");
     
   }
 
+  // event binding example
   addTwoNumbers(a: number, b: number): number {
     return a + b;
   }
