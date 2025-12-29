@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { CommonModule, DatePipe, LowerCasePipe, SlicePipe, UpperCasePipe } from '@angular/common';
+import { Component, Pipe } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-data-binding',
-  imports: [FormsModule],
+  imports: [FormsModule, UpperCasePipe, LowerCasePipe,DatePipe,SlicePipe,CommonModule],
   templateUrl: './data-binding.html',
   styleUrl: './data-binding.css',
 })
@@ -11,7 +12,7 @@ export class DataBinding  {
 
 
 // datatypes = string, number, boolean, any, void, null, undefined, array, tuple, enum, object
-  courseName : String = "Angular 20";
+  courseName : string = "Angular 20";
   isActive : boolean =true;
   currentDate: Date = new Date();
   rollNumbers : number = 111;
@@ -53,5 +54,6 @@ export class DataBinding  {
   addTwoNumbers(a: number, b: number): number {
     return a + b;
   }
+
 
 }

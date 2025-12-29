@@ -1,0 +1,74 @@
+<div>
+  <h1>Control-flow works Component!</h1>
+  <div class="col-3">
+    <select [(ngModel)]="selectedCast" class="form-select">
+      <option value="">ABC Caste</option>
+      <option value="">DEF Caste</option>
+      <option value="">MNO Caste</option>
+      <option value="">IJK Caste</option>
+      <option value="other">other</option>
+    </select>
+  </div>
+  <div class="col-3">
+    @if (selectedCast=='other') {
+    <input type="text" class="form-control" placeholder="other value" />}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-4">
+    @if (isStudentActive() ) {
+    <h3 class="text-success">Student is Active</h3>
+    } @else {
+    <h3 class="text-danger">Student is Inactive</h3>
+    }
+  </div>
+  <div class="col-4">
+    <button class="btn btn-success" (click)="changeStatus(true)">Make Active</button>
+    <button class="btn btn-warning mx-2" (click)="changeStatus(false)">Make Inactive</button>
+  </div>
+</div>
+<div class="row">
+  <div class="col-3">
+    <h2>List of City</h2>
+    <ul>
+      @for (city of cityList;track $index) {
+      <li>{{ city }}</li>
+      }
+    </ul>
+  </div>
+  <div class="col-3">
+    @for (item of cityList; track $index) {
+    <textarea [value]="item"></textarea>
+    }
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-4">
+    <table class="table table-borderd">
+      <thead>
+        <tr>
+          <th>Sr No.</th>
+          <th>Name</th>
+          <th>Age</th>
+          <th>City</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (student of studentList; track $index) {
+        <tr>
+          <td>{{ $index + 1 }}</td>
+          <td>{{ student.name }}</td>
+          <td>{{ student.age }}</td>
+          <td>{{ student.city }}</td>
+          <td>{{student.status ? "Active":"Inactive"}}</td>
+
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

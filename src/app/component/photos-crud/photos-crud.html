@@ -1,0 +1,136 @@
+<h1>Photos-crud works!</h1>
+
+<div class="row">
+  <div class="col-7">
+    <div class="card">
+      <div class="card-header bg-secondary">Photos List</div>
+      <div class="card-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Sn No.</th>
+              <th>Title</th>
+              <th>URL</th>
+              <th>Thumbnail</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (item of photosList; track $index) {
+            <tr>
+              <td>{{ item.id }}</td>
+              <td>{{ item.title }}</td>
+              <td>{{ item.url }}</td>
+              <td>{{ item.thumbnailUrl }}</td>
+              <td>
+                <button class="btn btn-primary btn-sm" (click)="onEdit(item)">Edit</button>
+                <button class="btn btn-danger btn-sm" (click)="onDelete(item.id)">Delete</button>
+              </td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-5">
+    <div class="card">
+      <div class="card-header bg-secondary">Photos List</div>
+      <div class="card-body">
+        <form #form="ngForm">
+          <div class="row">
+            {{ newPhoto.id }}
+            <div class="col-6">
+              <label>Album Id</label>
+              <input
+                name="albumId"
+                type="text"
+                [(ngModel)]="newPhoto.albumId"
+                class="form-control"
+              />
+            </div>
+            <div class="col-6">
+              <label>Title</label>
+              <input
+                name="title"
+                type="text"
+                #titleTemp="ngModel"
+                minlength="5"
+                [(ngModel)]="newPhoto.title"
+                required
+                class="form-control"
+              />
+              <!-- Validation  -->
+              @if (titleTemp.touched || titleTemp.dirty || isFormSubmitted) {
+              <div class="text-danger">
+                <!-- --{{ titleTemp.errors | json }}-- -->
+                @if(titleTemp.errors?.['required']){
+                <span>This is Required</span>
+                } @if(titleTemp.errors?.['minlength']){
+                <span>This is Min 5 length</span>
+                }
+              </div>
+              }
+            </div>
+            <div class="col-6">
+              <label>URL</label>
+              <input
+                name="url"
+                #urlTem="ngModel"
+                type="text"
+                [(ngModel)]="newPhoto.url"
+                class="form-control"
+                required
+                minlength="5"
+              />
+              @if (urlTem.touched || urlTem.dirty || isFormSubmitted) {
+              <div class="text-danger">
+                <!-- --{{ urlTem.errors | json }}-- -->
+                @if(urlTem.errors?.['required']){
+                <span>This is Required</span>
+                } @if(urlTem.errors?.['minlength']){
+                <span>This is Min 5 length</span>
+                }
+              </div>
+              }
+            </div>
+            <div class="col-6">
+              <label>Thumbnail</label>
+              <input
+                type="text"
+                #thumbnailUrlTemp="ngModel"
+                [(ngModel)]="newPhoto.thumbnailUrl"
+                class="form-control"
+                name="thumbnailUrl"
+                required
+                maxlength="17"
+              />
+              @if (thumbnailUrlTemp.touched||thumbnailUrlTemp.dirty || isFormSubmitted) {
+              <div class="text-danger">
+                <!-- --{{ thumbnailUrlTemp.errors | json }}-- -->
+                @if(thumbnailUrlTemp.errors?.['required']){
+                <span>This is Required</span>
+                } @if(thumbnailUrlTemp.errors?.['minlength']){
+                <span>This is Min 11 length</span>
+                }
+              </div>
+              }
+            </div>
+          </div>
+          <div class="row pt-2">
+            <div class="col-6 text-center">
+              <button class="btn btn-secondary">Reset</button>
+            </div>
+            <div class="col-6 text-center">
+              @if (newPhoto.id ==0) {
+              <button class="btn btn-success"
+              [disabled]="!form.valid"
+              (click)="onSavePhoto(form)">Save</button>
+              }@else {<button class="btn btn-warning" (click)="onUpdatePhoto()">Update</button>}
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

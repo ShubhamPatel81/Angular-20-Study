@@ -1,0 +1,15 @@
+<h1>Signal Component</h1>
+<p>This is the signal component template.</p>
+
+<p>Signal will be access as a method like signal()</p>
+<H3>{{ courseName }}</H3>
+<h3>{{ angualrVersion() }}</h3>
+<h3>{{ courseDuration() }}</h3>
+<button (click)="changeDuration()">Change Duration</button>
+
+<h3>{{ cityList() }}</h3>
+<button (click)="addCity('Mumbai')">Add City</button>
+
+<h3>{{ studentObj().name }} - {{ studentObj().age }} - {{ studentObj().course }} - {{ studentObj().city }}</h3>
+
+<button (click)="changeCity()">Change City</button>

@@ -1,8 +1,7 @@
-.userInput {
-  border: 2px solid blue;
-  padding: 10px;
-  border-radius: 5px;
-  font-size: 16px;
-  box-shadow: 1px 1px 3px lightgrey;
-  transition: border-color 0.3s, box-shadow 0.3s;
+.user-card {
+  transition: 0.3s;
+}
+.user-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
 }

@@ -63,3 +63,19 @@
 <h4>Event binding example</h4>
   <h4>Sum is {{ addTwoNumbers(10, 20) }}</h4>
 </div>
+
+
+<h1>Pipe IN Angular</h1>
+<p>Today's date is {{ currentDate | date:'fullDate' }}</p>
+<p>Today's date is (dd-MM-yy) => {{ currentDate | date:'dd-MM-yy' }}</p>
+<p>Today's date is => (dd-MMM-yy) {{ currentDate | date:'dd-MMM-yy' }}</p>
+<p>Today's date is => (dd-MMMM-yy) {{ currentDate | date:'dd-MMMM-yyyy' }}</p>
+<p>Transform Uppercase {{ courseName | uppercase }}</p>
+<p>Transform Lowercase {{ courseName | lowercase }}</p>
+<p>Transform Slice {{ courseName | slice:0:5 }}</p>
+<p>Transform Slice {{ courseName | slice:5 }}</p>
+<p>Number Pipe {{ 1234567 | number }}</p>
+<p>Number Pipe with digit info {{ 1234567.89 | number:'3.1-2' }}</p>
+<p>Currency Pipe {{ 1234567 | currency:'INR' }}</p> 
+<p>Currency Pipe with digit info {{ 1234567.89 | currency:'INR':'symbol':'3.1-2' }}</p>
+<p>Decimal Pipe {{ 0.259 | percent }}</p>

@@ -1,2 +1,137 @@
-<h1 style="color: blue">User works!</h1>
-<input  class="userInput" type="text" name="" id="" placeholder="User Input"/>
+<div class="container py-4">
+  <div class="row g-4">
+    <!-- ---------- FORM (LEFT SIDE) ---------- -->
+    <div class="col-4">
+      <div class="card">
+        <div class="card-header fw-bold bg-warning">User Form</div>
+        <div class="card-body">
+          <form [formGroup]="userForm">
+            <div class="mb-3">
+              <label class="form-label">Email ID</label>
+              <input
+                type="email"
+                formControlName="emailId"
+                class="form-control"
+                placeholder="Enter Email"
+              />
+              @if (userForm.controls['emailId'].touched || userForm.controls['emailId'].dirty ||
+              isFormSubmitted) {
+              <div class="text-danger mt-1">
+                @if (userForm.controls['emailId'].errors?.['required']){
+                <span>Email is required.</span>
+                } @if(userForm.controls['emailId'].errors?.['email']){
+                <span>Invalid email format.</span>
+                }
+              </div>
+              }
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Password</label>
+              <input
+                minlength="6"
+                type="password"
+                formControlName="password"
+                class="form-control"
+                placeholder="Enter Password"
+              />
+              @if (userForm.controls['password'].touched|| isFormSubmitted) {
+              <div class="text-danger mt-1">
+                @if (userForm.controls['password'].errors?.['required']){
+                <span>Password is required.</span>
+                } @if(userForm.controls['password'].errors?.['minlength']){
+                <span>Password must be at least 6 characters long.</span>
+                }
+              </div>
+              }
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Full Name</label>
+              <input
+                minlength="5"
+                type="text"
+                formControlName="fullName"
+                class="form-control"
+                placeholder="Enter Full Name"
+              />
+              @if (userForm.controls['fullName'].touched || userForm.controls['fullName'].dirty ||
+              isFormSubmitted) {
+              <div class="text-danger mt-1">
+                @if (userForm.controls['fullName'].errors?.['required']){
+                <span>Full Name is required.</span>
+                } @if(userForm.controls['fullName'].errors?.['minlength']){
+                <span>Full Name must be at least 25characters long.</span>
+                }
+              </div>
+              }
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Mobile No</label>
+              <input
+                type="text"
+                formControlName="mobileNo"
+                class="form-control"
+                placeholder="Enter Mobile Number"
+                required
+                minlength="10"
+                pattern="[6789][0-9]{9}"
+              />
+              @if (userForm.controls['mobileNo'].touched || userForm.controls['mobileNo'].dirty ||
+              isFormSubmitted) {
+              <div class="text-danger mt-1">
+                @if (userForm.controls['mobileNo'].errors?.['required']){
+                <span>Mobile No is required.</span>
+                } @if(userForm.controls['mobileNo'].errors?.['pattern']){
+                <span>Invalid mobile number format.</span>
+                }
+              </div>
+              }
+            </div>
+            --{{ userForm.controls['userId'].value }}
+            @if (userForm.controls['userId'].value==0) {
+            <button type="button" (click)="onSaveUser()" class="btn btn-primary w-100 my-1">
+              Save</button
+            >}@else {
+            <button type="button" (click)="onSaveUser()" class="btn btn-warning w-100 my-1">
+              Update</button
+            >}
+
+            <button type="reset" class="btn btn-secondary w-100 my-1" (click)="clearForm()">
+              Clear
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---------- USER CARDS (RIGHT SIDE) ---------- -->
+    <div class="col-8">
+      <div class="card mb-3">
+        <div class="card-header fw-bold bg-warning">User List</div>
+        <div class="card-body">
+          <!-- Single User Card -->
+
+          @for (item of userList$ | async; track $index) {
+          <div class="card user-card mb-3 shadow-sm p-3">
+            <div class="row">
+              <div class="col-md-8">
+                <h5 class="mb-1">{{ item.fullName }}</h5>
+                <p class="mb-1">Email: {{ item.emailId }}</p>
+                <p class="mb-1">Mobile: {{ item.mobileNo }}</p>
+                <p class="mb-1">User ID: {{ item.userId }}</p>
+              </div>
+              <div class="col-md-4 text-end">
+                <button class="btn btn-sm btn-success mb-2 m-lg-2" (click)="onEdit(item)">
+                  Edit
+                </button>
+                <button class="btn btn-sm btn-danger">Delete</button>
+              </div>
+            </div>
+          </div>
+          }
+
+          <!-- End Repeat -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

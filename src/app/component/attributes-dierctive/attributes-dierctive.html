@@ -1,0 +1,38 @@
+<div class="row" [ngStyle]="{ color: textColor }">
+  <div class="col-4"><h2>Attributes-dierctive works Component!</h2></div>
+  <div class="row">
+    <div class="col-4">
+      <table class="table table-borderd">
+        <thead>
+          <tr>
+            <th>Sr No.</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (student of studentList; track $index) {
+          <tr>
+            <td [ngClass]="student.status == true ? 'bg-success ' : 'bg-danger '">
+              {{ $index + 1 }}
+            </td>
+            <td>{{ student.name }}</td>
+            <td>{{ student.age }}</td>
+            <td>{{ student.status ? 'Active' : 'Inactive' }}</td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row" [ngStyle]="{ color: textColor }">
+    <div class="col-4">Hello World</div>
+  </div>
+</div>
+
+<hr />
+<hr />
+<div class="row">
+  <div class="col-4" [ngStyle]="myCss">div with ngStyle using myCss object</div>
+</div>
